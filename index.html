@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <title>Atlas Library | Seat Allocation System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Atlas Library home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span><strong>atlas</strong><small>library systems</small></span>
+      </a>
+      <div class="topbar-meta"><span class="live-dot"></span><span id="todayLabel"></span><span class="divider"></span><span class="sync-label">Local demo sync</span></div>
+      <button class="avatar-button" id="resetDemo" title="Reset demo data">AR</button>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <div class="workspace-label">Workspace</div>
+        <button class="role-tab active" data-view="student"><span class="nav-icon">↗</span><span>Student view</span><kbd>1</kbd></button>
+        <button class="role-tab" data-view="admin"><span class="nav-icon">⌘</span><span>Admin control</span><kbd>2</kbd></button>
+        <div class="side-rule"></div>
+        <div class="side-note">
+          <span class="note-icon">✦</span>
+          <strong>Designed for quiet focus.</strong>
+          <p>Reserve time. Find your seat. Make progress.</p>
+        </div>
+        <div class="sidebar-footer"><span class="status-pill success">● System online</span><span>v1.0 prototype</span></div>
+      </aside>
+
+      <section class="content-area">
+        <section class="view-panel active" id="studentView">
+          <div class="page-heading">
+            <div><p class="eyebrow">Good morning, Alex</p><h1>Your library, in sync.</h1><p class="lede">Everything you need for a focused study session, in one quiet place.</p></div>
+            <div class="heading-actions"><button class="button button-primary" id="scanButton"><span class="button-icon">⌗</span> Scan today’s QR</button></div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card accent-blue"><span class="stat-label">Seat assignment</span><strong id="studentSeat">A-14</strong><span class="stat-detail" id="studentMembership">Active until 30 Sep 2026</span><span class="stat-icon">⌂</span></article>
+            <article class="stat-card accent-green"><span class="stat-label">Attendance rate</span><strong id="studentRate">88%</strong><span class="stat-detail"><span class="green-text">↑ 4.2%</span> vs last month</span><span class="stat-icon">◔</span></article>
+            <article class="stat-card accent-yellow"><span class="stat-label">Next fee due</span><strong id="studentDue">18 Sep</strong><span class="stat-detail" id="studentDueDetail">Due in 3 days</span><span class="stat-icon">◷</span></article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="surface attendance-card"><div class="card-heading"><div><p class="eyebrow">Your rhythm</p><h2>Attendance overview</h2></div><span class="badge badge-green" id="attendanceBadge">On track</span></div><div class="attendance-body"><div class="donut" id="donutChart"><div><strong id="donutValue">88%</strong><small>present</small></div></div><div class="legend"><div><span class="legend-dot green"></span><div><strong id="presentDays">22 days</strong><small>Present days</small></div></div><div><span class="legend-dot red"></span><div><strong id="absentDays">3 days</strong><small>Absent days</small></div></div><div><span class="legend-dot yellow"></span><div><strong id="plannedDays">5 days</strong><small>Planned</small></div></div></div></div><div class="week-bars" id="weekBars"></div><div class="week-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></article>
+            <article class="surface fee-card"><div class="card-heading"><div><p class="eyebrow">Important</p><h2>Fee reminder</h2></div><span class="badge" id="feeBadge">Due soon</span></div><div class="fee-date"><strong id="feeDateLarge">18</strong><span><b id="feeMonth">SEP</b><small>2026</small></span></div><p id="feeMessage">Your monthly membership fee is due in 3 days. Keep your account active by paying before the due date.</p><div class="fee-footer"><span>Managed by library admin</span><button class="text-button" id="feeDetails">View details <span>→</span></button></div></article>
+          </div>
+
+          <div class="section-heading"><div><p class="eyebrow">Your access</p><h2>Membership & admission</h2></div><span class="muted-copy" id="applicationStatus">Application approved</span></div>
+          <div class="lower-grid"><article class="surface seat-card"><div class="seat-visual"><div class="seat-orbit orbit-one"></div><div class="seat-orbit orbit-two"></div><span class="seat-label">YOUR SEAT</span><strong id="seatVisual">A-14</strong><span class="seat-zone">Quiet zone · Window side</span></div><div class="seat-details"><div><span>Shift timing</span><strong id="studentShift">08:00 — 12:00</strong></div><div><span>Membership</span><strong id="studentStatus">Active member</strong></div><div><span>Expiry date</span><strong id="studentExpiry">30 Sep 2026</strong></div></div></article><article class="surface admission-card"><div class="card-heading"><div><p class="eyebrow">New member?</p><h2>Apply for admission</h2></div><span class="form-step">01 / 01</span></div><p class="card-copy">Submit your details to request a seat. The admin team usually reviews applications within one working day.</p><button class="button button-secondary full-width" id="openAdmission"><span>+</span> Start an application</button></article></div>
+        </section>
+
+        <section class="view-panel" id="adminView">
+          <div class="page-heading"><div><p class="eyebrow">Operations / Tuesday</p><h1>Control center.</h1><p class="lede">A live view of seats, members, and today’s attendance.</p></div><div class="heading-actions"><button class="button button-secondary" id="exportButton"><span>↓</span> Export report</button></div></div>
+          <div class="stats-grid admin-stats"><article class="stat-card accent-blue"><span class="stat-label">Active members</span><strong id="adminMembers">37</strong><span class="stat-detail"><span class="green-text">+3</span> this month</span><span class="stat-icon">♙</span></article><article class="stat-card accent-green"><span class="stat-label">Present today</span><strong id="adminPresent">24</strong><span class="stat-detail" id="adminPresentDetail">65% of active members</span><span class="stat-icon">✓</span></article><article class="stat-card accent-yellow"><span class="stat-label">Open seats</span><strong id="adminOpenSeats">13</strong><span class="stat-detail"><span class="blue-text">4</span> expiring soon</span><span class="stat-icon">▦</span></article><article class="stat-card accent-red"><span class="stat-label">Pending requests</span><strong id="adminPending">2</strong><span class="stat-detail">Needs your review</span><span class="stat-icon">!</span></article></div>
+          <div class="admin-grid"><article class="surface admission-table-card"><div class="card-heading"><div><p class="eyebrow">Review queue</p><h2>Admission requests</h2></div><span class="badge badge-yellow" id="queueBadge">2 pending</span></div><div class="table-wrap"><table><thead><tr><th>Applicant</th><th>Contact</th><th>Submitted</th><th>Status</th><th></th></tr></thead><tbody id="admissionsTable"></tbody></table></div></article><article class="surface admin-fee-card"><div class="card-heading"><div><p class="eyebrow">Global setting</p><h2>Fee controller</h2></div><span class="badge badge-blue">Live</span></div><form id="feeForm" class="compact-form"><label>Next due date<input type="date" id="feeDateInput" required></label><label>Reminder message<textarea id="feeMessageInput" rows="3" required></textarea></label><button class="button button-primary full-width" type="submit">Publish reminder</button></form><p class="form-hint">Changes publish instantly to every student view.</p></article></div>
+          <div class="admin-grid bottom-admin"><article class="surface seats-card"><div class="card-heading"><div><p class="eyebrow">Floor plan / 50 seats</p><h2>Seat management</h2></div><div class="seat-legend"><span><i class="green"></i> Occupied</span><span><i class="blue"></i> Expiring</span><span><i class="yellow"></i> Available</span></div></div><div class="seat-grid" id="seatGrid"></div></article><article class="surface log-card"><div class="card-heading"><div><p class="eyebrow">Live today</p><h2>Attendance log</h2></div><select id="attendanceFilter" aria-label="Attendance filter"><option value="all">All activity</option><option value="present">Present</option><option value="absent">Absent</option></select></div><div class="attendance-summary"><div><strong id="logPresent">24</strong><span>Present</span></div><div><strong id="logAbsent">13</strong><span>Not checked in</span></div><div class="mini-progress"><span id="attendanceProgress"></span></div></div><div class="log-list" id="attendanceLog"></div></article></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="admissionModal"><div class="modal admission-modal"><button class="modal-close" data-close="admissionModal">×</button><p class="eyebrow">New member application</p><h2>Find your place to focus.</h2><p class="modal-intro">Tell us a little about yourself. All fields are required for review.</p><form id="admissionForm"><div class="form-grid"><label>Student full name<input name="fullName" required placeholder="Alex Rivera"></label><label>Mobile number<input name="mobile" required pattern="[0-9+() -]{10,}" placeholder="+91 98765 43210"></label><label>Father's name<input name="fatherName" required></label><label>Mother's name<input name="motherName" required></label><label>Email ID<input type="email" name="email" required placeholder="alex@email.com"></label><label>Gender<select name="gender" required><option value="">Select gender</option><option>Male</option><option>Female</option><option>Other</option></select></label><label class="full-span">Full address<textarea name="address" required rows="2"></textarea></label><label>ID proof type<select name="idType" required><option value="">Select proof</option><option>Aadhaar Number</option><option>PAN Number</option></select></label><label>ID proof number<input name="idNumber" required></label></div><div class="form-actions"><button class="button button-secondary" type="button" data-close="admissionModal">Cancel</button><button class="button button-primary" type="submit">Submit application</button></div></form></div></div>
+  <div class="modal-backdrop" id="seatModal"><div class="modal small-modal"><button class="modal-close" data-close="seatModal">×</button><p class="eyebrow">Seat management</p><h2 id="seatModalTitle">Seat A-01</h2><div id="seatModalBody"></div><form id="seatForm" class="compact-form hidden"><label>Assign to applicant<select id="seatApplicant"></select></label><label>Membership expiry<input type="date" id="seatExpiry" required></label><button class="button button-primary full-width" type="submit">Allot seat</button></form><button class="button button-danger full-width hidden" id="vacateSeat">Vacate this seat</button></div></div>
+  <div class="toast" id="toast"><span class="toast-icon">✓</span><div><strong id="toastTitle">Saved</strong><p id="toastMessage">Your changes are live.</p></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
